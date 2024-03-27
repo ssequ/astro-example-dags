@@ -25,6 +25,8 @@ from airflow.decorators import dag, task
 from pendulum import datetime
 import requests
 
+from typing import List
+
 #Define the basic parameters of the DAG, like schedule and start_date
 @dag(
     start_date=datetime(2024, 1, 1),
@@ -40,7 +42,7 @@ def example_astronauts():
         #Define a dataset outlet for the task. This can be used to schedule downstream DAGs when this task has run.
         outlets=[Dataset("current_astronauts")]
     )  # Define that this task updates the `current_astronauts` Dataset
-    def get_astronauts(**context) -> list[dict]:
+    def get_astronauts(**context) -> List[dict]:
         """
         This task uses the requests library to retrieve a list of Astronauts 
         currently in space. The results are pushed to XCom with a specific key
