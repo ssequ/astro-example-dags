@@ -10,7 +10,7 @@ dag = DAG(
   default_args={"owner": "airflow"}
 )
 
-databricks_job = DataBricksRunNowOperator(
+databricks_job = DatabricksRunNowOperator(
   task_id="helloworld_job",
   job_name="helloworld",
   dag=dag
